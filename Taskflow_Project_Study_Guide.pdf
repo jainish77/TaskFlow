@@ -1,0 +1,215 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 7 0 R >> >> >> endobj
+4 0 obj << /Length 2371 >>
+stream
+BT
+/F1 11 Tf
+14 TL
+50 800 Td
+(TaskFlow Project Study Guide) Tj
+T*
+(============================) Tj
+T*
+T*
+(1. Tech Stack Overview) Tj
+T*
+(Frontend \(React + Vite + TypeScript\)) Tj
+T*
+(- Vite for bundling and dev server) Tj
+T*
+(- React Router for navigation) Tj
+T*
+(- React Query for data fetching and cache) Tj
+T*
+(- TypeScript for static typing) Tj
+T*
+T*
+(Backend \(Spring Boot + Java\)) Tj
+T*
+(- Spring MVC for REST controllers) Tj
+T*
+(- Spring Data JPA \(Hibernate\) for persistence) Tj
+T*
+(- Spring Security with JWT authentication) Tj
+T*
+(- MapStruct + Lombok for DTO mapping and boilerplate reduction) Tj
+T*
+(- Maven for build lifecycle) Tj
+T*
+T*
+(Database) Tj
+T*
+(- PostgreSQL in production configuration) Tj
+T*
+(- In-memory H2 in local profile \(PostgreSQL compatibility mode\)) Tj
+T*
+T*
+(2. Project Layout) Tj
+T*
+(backend/) Tj
+T*
+(  config/        Application wiring \(properties, seed data\)) Tj
+T*
+(  security/      JWT filters, services, and security rules) Tj
+T*
+(  project/       Project entity, DTOs, mapper, service, controller) Tj
+T*
+(  task/          Task entity, DTOs, mapper, service, controller, comments) Tj
+T*
+(  user/          User accounts, auth controller, service) Tj
+T*
+(  common/        Shared helpers \(exception handler, security utils\)) Tj
+T*
+(  application.yml         Default Postgres datasource) Tj
+T*
+(  application-local.yml   H2 datasource for local profile) Tj
+T*
+(frontend/) Tj
+T*
+(  api/           Axios client and typed API helpers) Tj
+T*
+(  features/auth/ Auth context, login/register forms, guard) Tj
+T*
+(  features/projects/ Project list/detail pages, task components) Tj
+T*
+(  App.tsx        Route setup + app shell) Tj
+T*
+T*
+(3. Backend Request Flow) Tj
+T*
+(- Controllers receive HTTP requests and validate payloads) Tj
+T*
+(- Services enforce business rules and ownership via SecurityUtils) Tj
+T*
+(- JPA repositories persist entities \(Project, TaskItem, UserAccount, TaskComment\)) Tj
+T*
+(- JWT filter authenticates requests and populates SecurityContext) Tj
+T*
+(- GlobalExceptionHandler converts IllegalArgumentException to 404 JSON responses) Tj
+T*
+T*
+(4. Authentication Journey) Tj
+T*
+(- POST /api/auth/login uses AuthenticationManager to validate credentials) Tj
+T*
+(- JwtService issues access + refresh tokens signed with app.security.jwt.secret) Tj
+T*
+(- Frontend stores tokens in AuthContext + localStorage) Tj
+ET
+endstream
+endobj
+5 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 6 0 R /Resources << /Font << /F1 7 0 R >> >> >> endobj
+6 0 obj << /Length 2671 >>
+stream
+BT
+/F1 11 Tf
+14 TL
+50 800 Td
+(- Axios interceptor attaches Authorization: Bearer <token>) Tj
+T*
+(- JwtAuthenticationFilter verifies tokens on each request) Tj
+T*
+T*
+(5. Project + Task CRUD) Tj
+T*
+(Projects) Tj
+T*
+(- listMyProjects\(\): only owner projects via repository findByOwnerEmailIgnoreCase) Tj
+T*
+(- createProject\(\), updateProject\(\), deleteProject\(\) ensure ownership) Tj
+T*
+(- DTO mapping via ProjectMapper exposes ownerEmail, createdAt, tasks) Tj
+T*
+T*
+(Tasks) Tj
+T*
+(- createTask\(\) links to parent project, optional assignee lookup) Tj
+T*
+(- updateTaskStatus\(\) updates enum state) Tj
+T*
+(- updateTask\(\) edits core fields, allows clearing assignee) Tj
+T*
+(- deleteTask\(\) removes task; orphanRemoval cascades comments deletion) Tj
+T*
+(- Comment endpoints allow add/list with author resolved from JWT subject) Tj
+T*
+T*
+(6. Frontend Data Flow) Tj
+T*
+(- React Query fetches projects, project detail, tasks, comments) Tj
+T*
+(- Mutations invalidate relevant caches to keep UI in sync) Tj
+T*
+(- AuthProvider syncs tokens with Axios and localStorage) Tj
+T*
+(- ProjectsPage supports create/edit/delete via window prompts) Tj
+T*
+(- ProjectDetailPage handles task CRUD, status cycling, comment posting) Tj
+T*
+T*
+(7. Profiles & Database Access) Tj
+T*
+(- application.yml -> PostgreSQL datasource) Tj
+T*
+(- application-local.yml -> H2 in-memory DB \(jdbc:h2:mem:taskflow\)) Tj
+T*
+(- H2 console enabled at /h2-console \(profile local\) with JDBC URL above) Tj
+T*
+(- Restarting with local profile reseeds sample data through DataInitializer) Tj
+T*
+T*
+(8. How to Explore the Codebase) Tj
+T*
+(- Start backend: mvn spring-boot:run -Dspring-boot.run.profiles=local) Tj
+T*
+(- Start frontend: npm run dev) Tj
+T*
+(- Browse http://localhost:5173 using seeded login admin@taskflow.dev / changeme) Tj
+T*
+(- Inspect DB via http://localhost:8080/h2-console \(user sa, blank password\)) Tj
+T*
+(- Run SHOW TABLES; SELECT * FROM PROJECTS; SELECT * FROM TASKS; etc.) Tj
+T*
+T*
+(9. Ideas for Extension) Tj
+T*
+(- Replace window.prompt UI with dedicated forms and validation) Tj
+T*
+(- Persist using PostgreSQL locally \(docker-compose or local install\)) Tj
+T*
+(- Add collaborators, task attachments, email notifications) Tj
+T*
+(- Write integration tests \(Spring Boot Test\) and frontend tests \(RTL/Cypress\)) Tj
+T*
+(- Containerize services, configure environment-based secrets) Tj
+T*
+T*
+(10. Learning Tips) Tj
+T*
+(- Trace a single API call front to back \(e.g. create task\)) Tj
+T*
+(- Modify entities/DTOs to see impact across layers) Tj
+T*
+(- Practice writing new endpoints following existing patterns) Tj
+T*
+(- Document findings as you explore to build personal reference) Tj
+ET
+endstream
+endobj
+7 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000002669 00000 n 
+0000002795 00000 n 
+0000005517 00000 n 
+trailer << /Size 8 /Root 1 0 R >>
+startxref
+5587
+%%EOF

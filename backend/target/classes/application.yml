@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskflow
+    username: taskflow
+    password: taskflow
+  jpa:
+    hibernate:
+      ddl-auto: update # For dev only; in prod prefer validated migrations
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+app:
+  security:
+    jwt:
+      issuer: taskflow
+      secret: change-me-in-prod
+      access-token-ttl: PT15M # 15 minutes
+      refresh-token-ttl: P7D  # 7 days
+
