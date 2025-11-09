@@ -21,6 +21,7 @@ com/taskflow/taskflow/config/JwtProperties.class
 com/taskflow/taskflow/security/JwtAuthenticationFilter.class
 com/taskflow/taskflow/task/TaskService.class
 com/taskflow/taskflow/comment/dto/CreateCommentRequest.class
+com/taskflow/taskflow/task/dto/UpdateTaskRequest.class
 com/taskflow/taskflow/task/dto/UpdateTaskStatusRequest.class
 com/taskflow/taskflow/project/Project.class
 com/taskflow/taskflow/task/TaskStatus.class
@@ -37,6 +38,7 @@ com/taskflow/taskflow/user/UserAccount$UserAccountBuilder.class
 com/taskflow/taskflow/comment/CommentMapper.class
 com/taskflow/taskflow/comment/TaskComment.class
 com/taskflow/taskflow/common/GlobalExceptionHandler.class
+com/taskflow/taskflow/project/dto/UpdateProjectRequest.class
 com/taskflow/taskflow/comment/TaskComment$TaskCommentBuilder.class
 com/taskflow/taskflow/user/UserService$UserMapper.class
 com/taskflow/taskflow/project/Project$ProjectBuilder.class
